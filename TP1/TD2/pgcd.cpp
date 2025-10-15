@@ -1,26 +1,26 @@
 #include <iostream>
 using namespace std;
 
-// Fonction récursive pour calculer le PGCD de deux entiers
-int pgcd(int a, int b) {
-    // Partie "ancre" : condition d'arrêt
+// Recursive function to calculate the GCD (Greatest Common Divisor) of two integers
+int gcd(int a, int b) {
+    // Base case
     if (b == 0)
         return a;
-    // Partie "récursive"
+    // Recursive case
     else
-        return pgcd(b, a % b);
+        return gcd(b, a % b);
 }
 
 int main() {
     int a, b;
 
-    cout << "=== Calcul du PGCD de deux entiers ===" << endl;
-    cout << "Entrez le premier entier : ";
+    cout << "=== GCD Calculator ===" << endl;
+    cout << "Enter the first integer: ";
     cin >> a;
-    cout << "Entrez le deuxième entier : ";
+    cout << "Enter the second integer: ";
     cin >> b;
 
-    cout << "Le PGCD de " << a << " et " << b << " est : " << pgcd(a, b) << endl;
+    cout << "The GCD of " << a << " and " << b << " is: " << gcd(a, b) << endl;
 
     return 0;
 }
