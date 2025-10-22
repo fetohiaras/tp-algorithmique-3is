@@ -1,9 +1,0 @@
-2
-composante connexe 1
-
-1 2
-
-composante connexe 2
-
-3 4 5
-
