@@ -1,3 +1,3 @@
-=== Question 5.1 : Dijkstra avec matrice d'adjacence ===
+=== Question 5.2 : Dijkstra avec liste d'adjacence ===
 Distance minimale = 15
 Chemin le plus court : 1 -> 2 -> 3 -> 6 -> 5 -> 4
