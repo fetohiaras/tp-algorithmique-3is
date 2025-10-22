@@ -87,9 +87,21 @@ int main() {
         return 1;  
     }
 
+    if (n > 5000) {
+        cerr << "n exceeds limit (max 5000)" << endl;
+        return 1;
+    }
+
+    for (int val : A) {
+        if (val < -10000 || val > 10000) {
+            cerr << "A[i] out of range (-10000 to 10000)" << endl;
+            return 1;
+        }
+    }
+
     auto [dp, prev] = compute_lis_dp(A, n);
-    auto [max_len, end] = find_max_lis(dp, n);
-    auto lis = reconstruct_lis(A, prev, end);
+    auto [max_len, end_idx] = find_max_lis(dp, n);
+    auto lis = reconstruct_lis(A, prev, end_idx);
 
     write_output("OUTMONOSEQ.TXT", max_len, lis);
 
