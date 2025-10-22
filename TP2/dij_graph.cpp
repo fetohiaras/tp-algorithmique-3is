@@ -100,6 +100,57 @@ void question_5_2(ifstream &fin, ofstream &fout) {
 
 
 
+void question_5_3(ifstream &fin, ofstream &fout) {
+    fout << "=== Question 5.3 : Dijkstra avec tas (min-heap) ===\n";
+
+    int n, m, start, dest;
+    fin >> n >> m >> start >> dest;
+
+    vector<vector<pair<int,int>>> adj(n + 1);
+    for (int i = 0; i < m; ++i) {
+        int u, v, w; fin >> u >> v >> w;
+        adj[u].push_back({v, w});
+        adj[v].push_back({u, w});
+    }
+
+    vector<int> dist(n + 1, INF), parent(n + 1, -1);
+    dist[start] = 0;
+
+    using pii = pair<int,int>;
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    pq.push({0, start});
+
+    while (!pq.empty()) {
+        auto [d, u] = pq.top(); pq.pop();
+        if (d > dist[u]) continue;
+        for (auto [v, w] : adj[u]) {
+            if (dist[v] > dist[u] + w) {
+                dist[v] = dist[u] + w;
+                parent[v] = u;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    if (dist[dest] == INF) {
+        fout << "Aucun chemin entre " << start << " et " << dest << "\n";
+        return;
+    }
+
+    fout << dist[dest] << "\n";
+    vector<int> path;
+    for (int v = dest; v != -1; v = parent[v]) path.push_back(v);
+    reverse(path.begin(), path.end());
+    for (size_t i = 0; i < path.size(); ++i) {
+        if (i) fout << " -> ";
+        fout << path[i];
+    }
+    fout << "\n";
+}
+
+
+
+
 int main() {
     ifstream fin("INPDIJGRAPH.TXT");
     ofstream fout("OUTDIJGRAPH.TXT");
@@ -110,7 +161,7 @@ int main() {
     }
 
 
-    question_5_2(fin, fout);
+    question_5_3(fin, fout);
 
     return 0;
 }
