@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O2")
 
-file(GLOB SRCS "*.cpp")
+file(GLOB SRCS "Q1.cpp" "*.cpp")
 
 foreach(SRC ${SRCS})
     get_filename_component(BIN_NAME ${SRC} NAME_WE)
